@@ -2,6 +2,7 @@ package fr.eni.calculatrice.main;
 
 import fr.eni.calculatrice.bo.Operation;
 import fr.eni.calculatrice.exceptions.DepassementCapaciteException;
+import fr.eni.calculatrice.exceptions.DivisionParZero;
 import fr.eni.calculatrice.exceptions.MauvaisOperateurException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -77,6 +78,8 @@ public class Main {
             case '+' :
                 try {
                     resultat = operation.ajouter(int1,int2);
+                    // Affichage final
+                    System.out.printf("%n%d %s %d = %d%n%n", int1, operateur, int2, resultat);
                 } catch (DepassementCapaciteException e) {
                     System.err.println(e.getMessage());
                 }
@@ -86,6 +89,8 @@ public class Main {
             case '-' :
                 try {
                     resultat = operation.soustraire(int1,int2);
+                    // Affichage final
+                    System.out.printf("%n%d %s %d = %d%n%n", int1, operateur, int2, resultat);
                 } catch (DepassementCapaciteException e) {
                     System.err.println(e.getMessage());
                 }
@@ -95,6 +100,8 @@ public class Main {
             case '*' :
                 try {
                     resultat = operation.multiplier(int1,int2);
+                    // Affichage final
+                    System.out.printf("%n%d %s %d = %d%n%n", int1, operateur, int2, resultat);
                 } catch (DepassementCapaciteException e) {
                     System.err.println(e.getMessage());
                 }
@@ -104,13 +111,14 @@ public class Main {
             case '/' :
                 try {
                     resultat = operation.diviser(int1,int2);
+                    // Affichage final
+                    System.out.printf("%n%d %s %d = %d%n%n", int1, operateur, int2, resultat);
+                } catch (DivisionParZero d){
+                    System.err.println(d.getMessage());
                 } catch (DepassementCapaciteException e) {
                     System.err.println(e.getMessage());
                 }
                 break;
         }
-
-        // Affichage final
-        System.out.printf("%n%d %s %d = %d%n%n", int1, operateur, int2, resultat);
     }
 }
